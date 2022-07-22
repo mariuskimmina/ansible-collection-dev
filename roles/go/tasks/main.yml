@@ -27,4 +27,5 @@
     src: /tmp/go.tar.gz
     dest: "{{ go_dest }}"
     remote_src: yes
+  becomes: yes
   when: go_downloaded
