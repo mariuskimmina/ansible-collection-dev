@@ -23,9 +23,9 @@
   register: go_downloaded
 
 - name: Install go
+  become: yes
   ansible.builtin.unarchive:
     src: /tmp/go.tar.gz
     dest: "{{ go_dest }}"
     remote_src: yes
-  becomes: yes
   when: go_downloaded
