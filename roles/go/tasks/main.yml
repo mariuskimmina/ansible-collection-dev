@@ -1,18 +1,18 @@
 ---
 - name: Check if go is already installed
   ansible.builtin.stat:
-    path: {{ go_dir }}
+    path: "{{ go_dir }}"
   register: go_installed
 
 - name: Remove go if it was already present
   ansible.builtin.file:
-    path: {{ go_dir}}
+    path: "{{ go_dir}}"
     state: absent
   when: go_installed
 
 - name: Download go
   ansible.builtin.get_url:
-    url: {{ go_url }}
+    url: "{{ go_url }}"
     dest: /tmp/go.tar.gz
     mode: '0777'
 
@@ -25,6 +25,6 @@
 - name: Install go
   ansible.builtin.unarchive:
     src: /tmp/go.tar.gz
-    dest: {{ go_dest}}
+    dest: "{{ go_dest }}"
     remote_src: yes
   when: go_downloaded
